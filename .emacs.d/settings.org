@@ -90,14 +90,18 @@ https://github.com/mpwang/perfect-margin
 
 * フォント
 事前に「JetBrainsMono」「PlemolJP」を端末にインストールしておくこと。
-*** JetBrainsMono
+*** JetBrains Mono
 https://www.jetbrains.com/ja-jp/lp/mono/
 *** PlemolJP
 https://github.com/yuru7/PlemolJP?tab=readme-ov-file
 
 #+begin_src emacs-lisp
-  (custom-set-faces
-     '(default ((t (:foundry "JetBrains Mono-10" :family "JetBrains Mono-10")))))
+    ;;  (custom-set-faces
+    ;;     '(default ((t (:foundry "JetBrains Mono-10" :family "JetBrains Mono-10")))))
+    ;; (set-default-face "JetBrains Mono-10")
+    (set-face-attribute 'default nil
+			:family "JetBrains Mono"
+		        :height 110)
 #+end_src
 
 * 言語
