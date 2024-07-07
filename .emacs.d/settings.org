@@ -52,24 +52,33 @@ https://github.com/mpwang/perfect-margin
     :ensure t)
 #+end_src
 
-* yes-noをy-nに変更
+** yes-noをy-nに変更
 #+begin_src emacs-lisp
   (setq use-short-answers t)
 #+end_src
 
-* バックアップファイルを作成しない
+** バックアップファイルを作成しない
 #+begin_src emacs-lisp
   (setq make-backup-files nil)
   (setq backup-inhibited nil)
   (setq create-lockfiles nil)
 #+end_src
 
-* ビープ音を消す
+** 末尾のタブ・スペースを可視化する
+#+begin_src emacs-lisp
+  (setq-default show-trailing-whitespace t)
+#+end_src
+
+** ビープ音を消す
 #+begin_src emacs-lisp
   (setq ring-bell-function 'ignore)
 #+end_src
 
-* テーマ
+** テーマ
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'wombat t)
+  (use-package ef-themes
+    :config
+    (setq ef-themes-mixed-fonts t
+	  ef-themes-variable-pitch-ui t)
+    (load-theme 'ef-night t))
 #+END_SRC
