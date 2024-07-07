@@ -16,8 +16,8 @@
 ** use-package
 #+begin_src emacs-lisp
   (use-package use-package
-    :config
-    (setq use-package-always-ensure t))
+      :config
+      (setq use-package-always-ensure t))
 #+end_src
 
 ** org
@@ -37,9 +37,13 @@ https://github.com/minad/org-modern
 #+end_src
 
 ** perfect-margin
+https://github.com/mpwang/perfect-margin
+
 #+begin_src emacs-lisp
- (use-package perfect-margin
-    :ensure t)
+  (use-package perfect-margin
+     :ensure t
+     :config
+     (perfect-margin-mode 1))
 #+end_src
 
 ** spacious-padding
