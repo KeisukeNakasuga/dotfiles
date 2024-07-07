@@ -22,3 +22,13 @@ else
   ln -s "$source_path" "$target_path"
   echo "create symbolic link: $target_path -> $source_path"
 fi
+
+# .emacs.d
+source_path="$current_dir/.emacs.d"
+target_path="$home_dir/.emacs.d"
+if [ -L "$target_path" ]; then
+  echo "$target_path is already exist."
+else
+  ln -s "$source_path" "$target_path"
+  echo "create symbolic link: $target_path -> $source_path"
+fi
