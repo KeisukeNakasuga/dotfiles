@@ -1,0 +1,71 @@
+#+title: My Emacs Settings
+#+author: Keisuke Nakasuga
+
+* パッケージ管理
+** レポジトリを登録する
+#+begin_src emacs-lisp
+  (require 'package)
+  (setq package-archives
+	'(("melpa" . "https://melpa.org/packages/")
+	  ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
+	  ("org" . "https://orgmode.org/elpa/")
+	  ("gnu" . "https://elpa.gnu.org/packages/")))
+  (package-initialize)
+#+end_src
+
+** use-package
+#+begin_src emacs-lisp
+  (use-package use-package
+    :config
+    (setq use-package-always-ensure t))
+#+end_src
+
+** org
+#+begin_src emacs-lisp
+  (use-package org
+    :ensure t)
+#+end_src
+
+** org-modern
+https://github.com/minad/org-modern
+
+#+begin_src emacs-lisp
+  (use-package org-modern
+    :ensure t
+    :hook ((org-mode . org-modern-mode)
+	   (org-agenda-finalize . org-modern-agenda)))
+#+end_src
+
+** perfect-margin
+#+begin_src emacs-lisp
+ (use-package perfect-margin
+    :ensure t)
+#+end_src
+
+** spacious-padding
+#+begin_src emacs-lisp
+  (use-package spacious-padding
+    :ensure t)
+#+end_src
+
+* yes-noをy-nに変更
+#+begin_src emacs-lisp
+  (setq use-short-answers t)
+#+end_src
+
+* バックアップファイルを作成しない
+#+begin_src emacs-lisp
+  (setq make-backup-files nil)
+  (setq backup-inhibited nil)
+  (setq create-lockfiles nil)
+#+end_src
+
+* ビープ音を消す
+#+begin_src emacs-lisp
+  (setq ring-bell-function 'ignore)
+#+end_src
+
+* テーマ
+#+BEGIN_SRC emacs-lisp
+  (load-theme 'wombat t)
+#+END_SRC
