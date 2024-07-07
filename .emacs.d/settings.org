@@ -23,7 +23,12 @@
 ** org
 #+begin_src emacs-lisp
   (use-package org
-    :ensure t)
+    :ensure t
+    :config
+    (setq org-babel-python-command "python3")
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((python . t))))
 #+end_src
 
 ** org-modern
@@ -83,7 +88,7 @@ https://github.com/mpwang/perfect-margin
     (load-theme 'ef-night t))
 #+END_SRC
 
-** フォント
+* フォント
 事前に「JetBrainsMono」「PlemolJP」を端末にインストールしておくこと。
 *** JetBrainsMono
 https://www.jetbrains.com/ja-jp/lp/mono/
@@ -95,3 +100,10 @@ https://github.com/yuru7/PlemolJP?tab=readme-ov-file
      '(default ((t (:foundry "JetBrains Mono-10" :family "JetBrains Mono-10")))))
 #+end_src
 
+* 言語
+#+begin_src python :results output
+print(1+1)
+#+end_src
+
+#+RESULTS:
+: 2
