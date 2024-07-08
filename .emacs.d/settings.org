@@ -20,6 +20,15 @@
       (setq use-package-always-ensure t))
 #+end_src
 
+** dashboard
+起動画面を便利にしてくれる。
+#+begin_src emacs-lisp
+  (use-package dashboard
+    :ensure t
+    :config
+    (dashboard-setup-startup-hook))
+#+end_src
+
 ** org-mode用の関数
 *** org-modeのコードブロックを編集、保存したときインデントを自動で整形する
 #+begin_src emacs-lisp
@@ -31,13 +40,12 @@
 	     (start    (org-element-property :begin element))
 	     (end      (org-element-property :end element)))
 	(save-restriction
-	  (narrow-to-region start
-			    end
-			    (goto-char start)
-			    (forward-line)
-			    (cond
-			     ((string-equal language "emacs-lisp") (indent-region (point) (point-max)))
-			     ((string-equal language "python") (python-indent-region (point) (point-max))))))))
+	  (narrow-to-region start end)
+	  (goto-char start)
+	  (forward-line)
+	  (cond
+	   ((string-equal language "emacs-lisp") (indent-region (point) (point-max)))
+	   ((string-equal language "python")     (python-indent-region (point) (point-max))))))))
 #+end_src
 
 ** org
