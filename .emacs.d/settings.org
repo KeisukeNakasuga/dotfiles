@@ -20,10 +20,32 @@
       (setq use-package-always-ensure t))
 #+end_src
 
+** org-mode用の関数
+*** org-modeのコードブロックを編集、保存したときインデントを自動で整形する
+#+begin_src emacs-lisp
+  (defun org-babel-auto-format-code-blocks ()
+    (interactive)
+    (when (org-in-src-block-p)
+      (let* ((element  (org-element-at-point))
+	     (language (org-element-property :language element))
+	     (start    (org-element-property :begin element))
+	     (end      (org-element-property :end element)))
+	(save-restriction
+	  (narrow-to-region start
+			    end
+			    (goto-char start)
+			    (forward-line)
+			    (cond
+			     ((string-equal language "emacs-lisp") (indent-region (point) (point-max)))
+			     ((string-equal language "python") (python-indent-region (point) (point-max))))))))
+#+end_src
+
 ** org
 #+begin_src emacs-lisp
   (use-package org
     :ensure t
+    :hook
+    ((org-mode . (lambda () (add-hook 'before-save-hook 'org-babel-auto-format-code-blocks nil 'local))))
     :config
     (setq org-babel-python-command "python3")
     (org-babel-do-load-languages
@@ -106,8 +128,11 @@ https://github.com/yuru7/PlemolJP?tab=readme-ov-file
 
 * 言語
 #+begin_src python :results output
-print(1+1)
-#+end_src
+  def test():
+      return 1 + 1;
+
+  print(test())
+  #+end_src
 
 #+RESULTS:
 : 2
