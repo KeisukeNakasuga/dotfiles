@@ -126,21 +126,48 @@ https://www.jetbrains.com/ja-jp/lp/mono/
 https://github.com/yuru7/PlemolJP?tab=readme-ov-file
 
 #+begin_src emacs-lisp
-    ;;  (custom-set-faces
-    ;;     '(default ((t (:foundry "JetBrains Mono-10" :family "JetBrains Mono-10")))))
-    ;; (set-default-face "JetBrains Mono-10")
-    (set-face-attribute 'default nil
-			:family "JetBrains Mono"
-		        :height 110)
+  ;;  (custom-set-faces
+  ;;     '(default ((t (:foundry "JetBrains Mono-10" :family "JetBrains Mono-10")))))
+  ;; (set-default-face "JetBrains Mono-10")
+  (set-face-attribute 'default nil
+		      :family "JetBrains Mono"
+		      :height 100)
 #+end_src
 
 * 言語
-#+begin_src python :results output
-  def test():
-      return 1 + 1;
+** lsp & company
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :ensure t
+    :init
+    (setq lsp-keymap-prefix "C-c l"))
+#+end_src
 
-  print(test())
+#+begin_src emacs-lisp
+  (use-package lsp-ui
+    :ensure t
+    :config
+    (setq lsp-ui-imenu-enable t
+	  lsp-ui-sideline-show-hover t
+	  lsp-ui-doc-enable t)
+    :commands lsp-ui-mode)
   #+end_src
 
-#+RESULTS:
-: 2
+#+begin_src emacs-lisp
+  (use-package company
+    :ensure t
+    :config
+    (setq company-tooltip-align-annotations t
+	  company-idle-delay 0
+	  company-minimum-prefix-length 1
+	  company-selection-wrap-around t
+	  global-company-mode t
+	  company-selection-wrap-around t)
+    :hook
+    (after-init . global-company-mode))
+  #+end_src
+
+#+begin_src emacs-lisp
+  (use-package lsp-pyright
+    :after (lsp-mode python-mode))
+#+end_src

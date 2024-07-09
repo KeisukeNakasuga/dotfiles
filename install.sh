@@ -1,5 +1,29 @@
 #!/usr/bin/bash
 
+sudo apt update
+
+# install volta
+if ! command -v volta &> /dev/null
+then
+  echo "install volta."
+  curl https://get.volta.sh | bash
+  VOLTA_HOME="$HOME/.volta"
+  if [ -f "$HOME/.bashrc" ]; then
+    echo 'export "# volta settings"' >> "$HOME/.bashrc"
+    echo 'export VOLTA_HOME="$HOME/.volta"' >> "$HOME/.bashrc"
+    echo 'export PATH="$VOLTA_HOME/bin:$PATH"' >> "$HOME/.bashrc"
+    source "$HOME/.bashrc"
+  fi
+else
+  echo "volta is already exist."
+fi
+volta_version=$(volta --version)
+echo "volta version: $volta_version"
+
+# install latest node & npm
+volta install node
+volta install npm
+
 current_dir=$(pwd)
 home_dir=$HOME
 
