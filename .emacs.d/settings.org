@@ -109,6 +109,13 @@ https://github.com/mpwang/perfect-margin
   (setq ring-bell-function 'ignore)
 #+end_src
 
+** マウスでウィンドウ間の境界を調整しやすくする
+#+begin_src emacs-lisp
+  (setq window-divider-default-right-width 3)
+  (setq window-divider-default-bottom-width 3)
+  (window-divider-mode 1)
+#+end_src
+
 ** テーマ
 #+BEGIN_SRC emacs-lisp
   (use-package ef-themes
