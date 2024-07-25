@@ -137,21 +137,22 @@ https://github.com/yuru7/PlemolJP?tab=readme-ov-file
 * 言語
 ** lsp & company
 #+begin_src emacs-lisp
-  (use-package lsp-mode
+  (use-package eglot
     :ensure t
-    :init
-    (setq lsp-keymap-prefix "C-c l"))
-#+end_src
-
-#+begin_src emacs-lisp
-  (use-package lsp-ui
-    :ensure t
+    :hook ((python-mode . eglot-ensure)
+	   (python-mode . my/python-mode-hook))
     :config
-    (setq lsp-ui-imenu-enable t
-	  lsp-ui-sideline-show-hover t
-	  lsp-ui-doc-enable t)
-    :commands lsp-ui-mode)
-  #+end_src
+    (setq eglot-server-programs '((python-mode . ("pyright-langserver" "--stdio"))))
+
+    ;; Function to activate the rye virtual environment
+    (defun my/python-mode-hook ()
+      (let ((venv-path (expand-file-name ".venv" (locate-dominating-file default-directory ".venv"))))
+	(when (file-directory-p venv-path)
+	  (pyvenv-activate venv-path)
+	  (setq-local eglot-workspace-configuration
+		      `((:pyright . ((python.analysis.extraPaths . ["src" ,(expand-file-name "lib/python3.12/site-packages" venv-path)])))))))))
+
+#+end_src
 
 #+begin_src emacs-lisp
   (use-package company
@@ -167,7 +168,3 @@ https://github.com/yuru7/PlemolJP?tab=readme-ov-file
     (after-init . global-company-mode))
   #+end_src
 
-#+begin_src emacs-lisp
-  (use-package lsp-pyright
-    :after (lsp-mode python-mode))
-#+end_src
