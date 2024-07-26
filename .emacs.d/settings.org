@@ -87,6 +87,11 @@ https://github.com/mpwang/perfect-margin
     :ensure t)
 #+end_src
 
+** 行数を表示
+#+begin_src emacs-lisp
+  (global-display-line-numbers-mode t)
+#+end_src
+
 ** yes-noをy-nに変更
 #+begin_src emacs-lisp
   (setq use-short-answers t)
@@ -146,10 +151,13 @@ https://github.com/yuru7/PlemolJP?tab=readme-ov-file
 #+begin_src emacs-lisp
   (use-package eglot
     :ensure t
-    :hook ((python-mode . eglot-ensure)
-	   (python-mode . my/python-mode-hook))
+    :hook
+    ((python-mode . eglot-ensure)
+     (python-mode . my/python-mode-hook)
+     (typescript-mode . eglot-ensure))
     :config
-    (setq eglot-server-programs '((python-mode . ("pyright-langserver" "--stdio"))))
+    (add-to-list 'eglot-server-programs '(python-mode . ("pyright-langserver" "--stdio")))
+    (add-to-list 'eglot-server-programs '(typescript-mode . ("/Users/knakasuga/.volta/bin/typescript-language-server" "--stdio")))
 
     ;; Function to activate the rye virtual environment
     (defun my/python-mode-hook ()
@@ -175,3 +183,12 @@ https://github.com/yuru7/PlemolJP?tab=readme-ov-file
     (after-init . global-company-mode))
   #+end_src
 
+#+begin_src emacs-lisp
+  (use-package typescript-mode
+    :ensure t
+    :mode "\\.ts\\'"
+    :hook
+    (typescript-mode . eglot-ensure)
+    :config
+    (setq typescript-indent-level 2))
+  #+end_src
