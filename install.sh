@@ -56,3 +56,24 @@ else
   ln -s "$source_path" "$target_path"
   echo "create symbolic link: $target_path -> $source_path"
 fi
+
+# gnome
+sudo apt -y install xdotool
+
+source_path="$current_dir/move_left.sh"
+target_path="$home_dir/move_left.sh"
+if [ -L "$target_path" ]; then
+  echo "$target_path is already exist."
+else
+  ln -s "$source_path" "$target_path"
+  echo "create symbolic link: $target_path -> $source_path"
+fi
+
+source_path="$current_dir/move_right.sh"
+target_path="$home_dir/move_right.sh"
+if [ -L "$target_path" ]; then
+  echo "$target_path is already exist."
+else
+  ln -s "$source_path" "$target_path"
+  echo "create symbolic link: $target_path -> $source_path"
+fi
