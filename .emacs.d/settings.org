@@ -165,6 +165,17 @@ https://github.com/ema2159/centaur-tabs?tab=readme-ov-file
     ("C-<next>" . centaur-tabs-forward))
 #+END_SRC
 
+** magit
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :bind (("C-x g" . magit-status))
+    :config
+    (setq magit-push-always-verify nil)
+    (setq magit-repository-directories '(("~/projects" . 2)))
+    (setq magit-refresh-status-buffer nil))
+#+END_SRC
+
 * フォント
 事前に「JetBrainsMono」「PlemolJP」を端末にインストールしておくこと。
 *** JetBrains Mono
