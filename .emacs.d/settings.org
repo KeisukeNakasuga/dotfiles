@@ -232,16 +232,12 @@ https://www.jetbrains.com/ja-jp/lp/mono/
 
 ** dap-mode
 #+begin_src emacs-lisp
-;;  (use-package dap-mode
-;;    :ensure t
-;;    :commands dap-debug
-;;    :config
-;;    (require 'dap-mode)
-;;    (dap-node-setup)
-;;    :hook
-;;    (eglot-managed-mode . dap-mode)
-;;    (eglot-managed-mode . dap-ui-mode)
-;;    (typescript-mode . (lambda () (require 'dap-node))))
+  (use-package dap-mode
+    :ensure t
+    :config
+    (dap-mode 1)
+    (dap-ui-mode 1)
+    (require 'dap-python))
   #+end_src
 
 ** dap-ui
@@ -264,3 +260,13 @@ https://www.jetbrains.com/ja-jp/lp/mono/
     :config
     (setq typescript-indent-level 2))
   #+end_src
+
+** Python
+#+begin_src emacs-lisp
+  (use-package dap-python
+    :ensure nil
+    :after (dap-mode)
+    :config
+    (setq dap-python-debugger 'debugpy)
+    (setq dap-python-executable "python3"))
+#+end_src
