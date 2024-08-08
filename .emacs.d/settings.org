@@ -121,6 +121,15 @@ https://github.com/mpwang/perfect-margin
   (window-divider-mode 1)
 #+end_src
 
+** 括弧の補完など
+#+begin_src emacs-lisp
+  (electric-pair-mode 1)
+  ;;  (use-package smartparens
+  ;;    :ensure t
+  ;;    :config
+  ;;    (require 'smartparens-config))
+#+end_src
+
 ** テーマ
 #+BEGIN_SRC emacs-lisp
   (use-package ef-themes
