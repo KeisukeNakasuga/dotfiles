@@ -63,7 +63,6 @@
 
 ** org-modern
 https://github.com/minad/org-modern
-
 #+begin_src emacs-lisp
   (use-package org-modern
     :ensure t
@@ -123,11 +122,11 @@ https://github.com/mpwang/perfect-margin
 
 ** 括弧の補完など
 #+begin_src emacs-lisp
-  (electric-pair-mode 1)
-  ;;  (use-package smartparens
-  ;;    :ensure t
-  ;;    :config
-  ;;    (require 'smartparens-config))
+  (use-package smartparens
+    :ensure t
+    :config
+    (smartparens-global-mode t)
+    (show-smartparens-global-mode t))
 #+end_src
 
 ** テーマ
