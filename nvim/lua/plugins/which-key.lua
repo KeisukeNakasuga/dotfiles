@@ -35,6 +35,30 @@ return {
         mode = 'n',
         desc = 'Move to right window',
     },
+    -- Terminal mode
+    {
+      'tt',
+      function()
+        vim.cmd('terminal')
+      end,
+      desc = 'Open terminal mode in new window',
+    },
+    {
+      'tx',
+      function()
+        vim.cmd('belowright new')
+        vim.cmd('terminal')
+      end,
+      desc = 'Open terminal mode in a split window below',
+    },
+    {
+      'tv',
+      function()
+        vim.cmd('rightbelow vsplit')
+        vim.cmd('terminal')
+      end,
+      desc = 'Open terminal mode in a vertical split on the right',
+    },
     -- Which key
     {
       '<leader>?',
