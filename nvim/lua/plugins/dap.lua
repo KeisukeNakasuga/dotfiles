@@ -22,6 +22,27 @@ return {
       local dap = require('dap')
       dap.set_log_level('TRACE')
 
+      -- c lang
+      dap.adapters.gdb = {
+        type = 'executable',
+        command = 'gdb',
+        args = { '--interpreter=dap' }
+      }
+      dap.configurations.c = {
+        {
+          name = 'Launch file (gdb)',
+          type = 'gdb',
+          request = 'launch',
+          program = function()
+            -- local default = vim.fn.getcwd() .. '/a.out'
+            -- return vim.fn.input('Path to executable: ', default, 'file')
+            return vim.fn.getcwd() .. '/main'
+          end,
+          cwd = '${workspaceFolder}',
+          stopAtEntry = false,
+        },
+      }
+
       -- js, ts settings
       dap.adapters['pwa-node'] = {
         type = 'server',

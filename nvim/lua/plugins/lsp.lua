@@ -16,6 +16,7 @@ return {
       local mason_lspconfig = require('mason-lspconfig')
       mason_lspconfig.setup({
         ensure_installed = {
+          'clangd',
           'ts_ls',
           'svelte',
           'lua_ls',
