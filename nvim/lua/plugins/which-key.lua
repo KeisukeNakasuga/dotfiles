@@ -12,25 +12,25 @@ return {
     },
     -- Move window pane
     {
-        '<M-h>',
+        '<C-Left>',
         '<C-w>h',
         mode = 'n',
         desc = 'Move to left window',
     },
     {
-        '<M-j>',
+        '<C-Down>',
         '<C-w>j',
         mode = 'n',
         desc = 'Move to below window',
     },
     {
-        '<M-k>',
+        '<C-Up>',
         '<C-w>k',
         mode = 'n',
         desc = 'Move to above window',
     },
     {
-        '<M-l>',
+        '<C-Right>',
         '<C-w>l',
         mode = 'n',
         desc = 'Move to right window',
