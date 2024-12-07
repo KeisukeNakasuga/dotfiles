@@ -3,11 +3,10 @@
 current_dir=$(pwd)
 home_dir=$HOME
 
-source_path="$current_dir/nvim"
-target_path="$home_dir/.config/nvim"
-if ! command -v nvim &> /dev/null
-then
-  sudo snap -y install nvim
+source_path="$current_dir/term/.wezterm.lua"
+target_path="$home_dir/.wezterm.lua"
+if [ -L "$target_path" ]; then
+  echo "$target_path already exist."
 else
   ln -s "$source_path" "$target_path"
   echo "create symbolic link: $target_path -> $source_path"

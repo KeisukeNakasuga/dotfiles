@@ -2,5 +2,6 @@
 My dotfiles.
 
 ```bash
-bash ./install.sh
+chmod +x install.sh
+./install.sh
 ```
