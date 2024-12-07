@@ -1,7 +1,7 @@
 -- ref: https://neovide.dev/configuration.html
 
 if vim.g.neovide then
-   vim.o.guifont = "JetBrains Mono:h12"      -- font
+   vim.o.guifont = "JetBrains Mono:h10"      -- font
    vim.g.neovide_refresh_rate = 60           -- refresh rate
    vim.g.neovide_cursor_antialiasing = true  -- anti alias
    vim.g.neovide_transparency = 0.8          -- opacity
