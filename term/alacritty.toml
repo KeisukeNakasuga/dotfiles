@@ -10,4 +10,4 @@ dynamic_padding = true
 history = 100000
 
 [terminal]
-shell = { program = "/bin/bash", args = ["-l", "-c", "zellij attach --index 0 --create",] }
+shell = { program = "/usr/bin/zsh", args = ["-l", "-c", "zellij attach --index 0 --create",] }
