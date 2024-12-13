@@ -1,0 +1,13 @@
+[general]
+live_config_reload = true
+
+[window]
+opacity = 0.90
+padding = { x = 10, y = 10 }
+dynamic_padding = true
+
+[scrolling]
+history = 100000
+
+[terminal]
+shell = { program = "/bin/bash", args = ["-l", "-c", "zellij attach --index 0 --create",] }

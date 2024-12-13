@@ -3,6 +3,7 @@
 current_dir=$(pwd)
 home_dir=$HOME
 
+# wezterm
 source_path="$current_dir/term/.wezterm.lua"
 target_path="$home_dir/.wezterm.lua"
 if [ -L "$target_path" ]; then
@@ -13,9 +14,19 @@ else
 fi
 
 
+# alacritty
 if ! command -v alacritty &> /dev/null; then
   cargo install alacritty
 fi
 alacritty_version=$(alacritty --version)
 echo "alacritty version: $alacritty_version)"
 
+source_path="$current_dir/term/alacritty.toml"
+target_path="$home_dir/.config/alacritty/alacritty.toml"
+if [ -L "$target_path" ]; then
+  echo "$target_path already exist."
+else
+  mkdir "$home_dir/.config/alacritty"
+  ln -s "$source_path" "$target_path"
+  echo "create symbolic link: $target_path -> $source_path"
+fi
