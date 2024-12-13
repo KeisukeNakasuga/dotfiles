@@ -11,3 +11,11 @@ else
   ln -s "$source_path" "$target_path"
   echo "create symbolic link: $target_path -> $source_path"
 fi
+
+
+if ! command -v alacritty &> /dev/null; then
+  cargo install alacritty
+fi
+alacritty_version=$(alacritty --version)
+echo "alacritty version: $alacritty_version)"
+
