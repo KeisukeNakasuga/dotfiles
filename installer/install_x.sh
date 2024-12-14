@@ -32,3 +32,6 @@ else
   ln -s "$source_path" "$target_path"
   echo "create symbolic link: $target_path -> $source_path"
 fi
+
+# x
+gsettings set org.gnome.desktop.interface clock-show-seconds true
