@@ -33,6 +33,7 @@ return {
           ),
           on_attach = function (client, bufnr)
             -- キーバインド設定は neovim/nvim-lspconfig の方に記載
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap=true, silent=true })
           end
         }
         require('lspconfig')[server_name].setup(opt)
