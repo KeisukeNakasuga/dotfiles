@@ -13,6 +13,17 @@ if ! command -v zsh &> /dev/null; then
   sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /opt/zsh-syntax-highlighting
   echo "source /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 fi
+
+source_path="$current_dir/term/.zshrc"
+target_path="$home_dir/.zshrc"
+if [ -L "$target_path" ]; then
+  echo "$target_path already exist."
+else
+  mkdir "$home_dir/.config/alacritty"
+  ln -s "$source_path" "$target_path"
+  echo "create symbolic link: $target_path -> $source_path"
+fi
+
 zsh_version=$(zsh --version)
 echo "zsh version: $zsh_version"
 
