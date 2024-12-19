@@ -55,7 +55,7 @@ return {
       'tv',
       function()
         vim.cmd('rightbelow vsplit')
-        vim.cmd('terminal')
+        -- vim.cmd('terminal')
       end,
       desc = 'Open terminal mode in a vertical split on the right',
     },
