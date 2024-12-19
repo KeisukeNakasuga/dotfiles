@@ -16,7 +16,8 @@ dynamic_padding = true
 history = 100000
 
 [terminal]
-shell = { program = "/usr/bin/zsh", args = ["-l", "-c", "zellij --layout ~/.config/zellij/layout.kdl",] }
+# shell = { program = "/usr/bin/zsh", args = ["-l", "-c", "zellij --layout ~/.config/zellij/layout.kdl",] }
+shell = { program = "/usr/bin/zsh", args = ["-c", "tmux new-session \\; source-file /home/keisuke/Documents/projects/dotfiles/term/tmux/layout",] }
 
 [colors.primary]
 background = '0x161821'
