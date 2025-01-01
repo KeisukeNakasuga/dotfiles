@@ -1,0 +1,81 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.os "darwin" }}
+brew update && brew upgrade
+arch --arm64 brew install \
+  ripgrep \
+  luarocks \
+  zsh \
+  tmux \
+  nvim \
+  wget \
+  curl
+{{ else if eq .chezmoi.os "linux" }}
+sudo apt update && sudo apt -y upgrade
+sudo apt -y install \
+  ripgrep \
+  lua5.1 \
+  luarocks \
+  libreadline-dev \
+  zsh \
+  tmux \
+  cmake \
+  g++ \
+  pkg-config \
+  libfreetype6-dev \
+  libfontconfig1-dev \
+  libxcb-xfixes0-dev \
+  libxkbcommon-dev
+sudo sunap install nvim
+{{ end }}
+
+# Rust
+{{ if eq .chezmoi.os "linux" }}
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+{{ end }}
+
+# Python
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# cargo
+cargo install git-delta
+cargo install alacritty
+
+# node
+{{ if eq .chezmoi.os "darwin" }}
+arch --arm64 brew install volta
+{{ else if eq .chezmoi.os "linux" }}
+curl https://get.volta.sh | zsh
+{{ end }}
+volta install node
+volta install npm
+
+# lazygit
+{{ if eq .chezmoi.os "darwin" }}
+arch --arm64 brew install lazygit
+{{ else if eq .chezmoi.os "linux" }}
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit -D -t /usr/local/bin/
+{{ end }}
+
+# show versions
+cargo_version=$(cargo --version)
+echo "cargo version: $cargo_version"
+
+uv_version=$(uv --version)
+echo "uv version: $uv_version"
+
+volta_version=$(volta --version)
+echo "Volta version: $volta_version"
+node_version=$(node --version)
+npm_version=$(npm --version)
+echo "Node.js version: $node_version"
+echo "npm version: $npm_version"
+
+alacritty_version=$(alacritty --version)
+echo "alacritty version: $alacritty_version"
+
+lazygit_version=$(lazygit --version)
+echo "lazygit version: $lazygit_version"
