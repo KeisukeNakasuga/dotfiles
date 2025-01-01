@@ -36,3 +36,15 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 . "$HOME/.cargo/env"
 
 . "$HOME/.local/bin/env"
+
+# utility functions
+fssh() {
+  local host
+  host=`cat ~/.ssh/config | grep -i ^host | awk '{print $2}' | fzf`
+
+  if [ "$host" = "" ]; then
+    return 1
+  fi
+
+  ssh ${host}
+}
