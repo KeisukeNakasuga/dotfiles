@@ -10,7 +10,8 @@ arch --arm64 brew install \
   nvim \
   wget \
   curl \
-  fzf
+  fzf \
+  jq
 {{ else if eq .chezmoi.os "linux" }}
 sudo apt update && sudo apt -y upgrade
 sudo apt -y install \
@@ -27,7 +28,8 @@ sudo apt -y install \
   libfontconfig1-dev \
   libxcb-xfixes0-dev \
   libxkbcommon-dev \
-  fzf
+  fzf \
+  jq
 sudo sunap install nvim
 {{ end }}
 
