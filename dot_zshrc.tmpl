@@ -10,7 +10,11 @@ setopt share_history
 setopt hist_reduce_blanks
 setopt hist_ignore_all_dups
 
-alias sl='ls'
+alias ls='ls --color'
+alias sl='ls --color'
+
+autoload -Uz compinit
+compinit
 
 # sheldon
 eval "$(sheldon source)"
