@@ -33,3 +33,6 @@ github = "zsh-users/zsh-completions"
 
 [plugins.zsh-z]
 github = "agkozak/zsh-z"
+
+[plugins.autopair]
+github = "hlissner/zsh-autopair"
