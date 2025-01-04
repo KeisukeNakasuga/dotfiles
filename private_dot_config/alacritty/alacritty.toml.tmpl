@@ -4,8 +4,6 @@ live_config_reload = true
 {{ if eq .chezmoi.os "darwin" }}
 [env]
 TERM = "alacritty"
-{{ else if eq .chezmoi.os "linux" }}
-TERM = "xterm-256color"
 {{ end }}
 
 [font]
