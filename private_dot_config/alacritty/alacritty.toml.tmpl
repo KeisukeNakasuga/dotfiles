@@ -1,8 +1,12 @@
 [general]
 live_config_reload = true
 
+{{ if eq .chezmoi.os "darwin" }}
 [env]
 TERM = "alacritty"
+{{ else if eq .chezmoi.os "linux" }}
+TERM = "xterm-256color"
+{{ end }}
 
 [font]
 size = 9
@@ -22,7 +26,7 @@ history = 100000
 {{ if eq .chezmoi.os "darwin" }}
 shell = { program = "/opt/homebrew/bin/zsh", args = ["-c", "/opt/homebrew/bin/tmux new-session \\; source-file {{ .chezmoi.homeDir }}/.config/tmux/layout",] }
 {{ else if eq .chezmoi.os "linux" }}
-shell = { program = "/usr/bin/zsh", args = ["-c", "tmux new-session \\; source-file /home/keisuke/Documents/projects/dotfiles/term/tmux/layout",] }
+shell = { program = "/usr/bin/zsh", args = ["-c", "tmux new-session \\; source-file {{ .chezmoi.homeDir }}/.config/tmux/layout",] }
 {{ end }}
 [colors.primary]
 background = '0x161821'
