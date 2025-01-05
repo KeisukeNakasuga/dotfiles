@@ -63,23 +63,3 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/downl
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 {{ end }}
-
-# show versions
-cargo_version=$(cargo --version)
-echo "cargo version: $cargo_version"
-
-uv_version=$(uv --version)
-echo "uv version: $uv_version"
-
-volta_version=$(volta --version)
-echo "Volta version: $volta_version"
-node_version=$(node --version)
-npm_version=$(npm --version)
-echo "Node.js version: $node_version"
-echo "npm version: $npm_version"
-
-alacritty_version=$(alacritty --version)
-echo "alacritty version: $alacritty_version"
-
-lazygit_version=$(lazygit --version)
-echo "lazygit version: $lazygit_version"
