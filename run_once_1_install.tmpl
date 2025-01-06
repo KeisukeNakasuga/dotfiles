@@ -63,3 +63,15 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/downl
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 {{ end }}
+
+# lazydocker
+{{ if eq .chezmoi.os "linux" }}
+curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+{{ else if eq .chezmoi.os "darwin" }}
+arch --arm64 brew install lazydocker
+{{ end }}
+
+# nvme
+{{ if eq .chezmoi.os "linux" }}
+sudo apt -y install nvme-cli
+{{ end }}
