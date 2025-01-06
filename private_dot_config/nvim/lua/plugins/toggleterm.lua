@@ -18,6 +18,7 @@ return {
     })
 
     function _lazygit_toggle()
+      vim.cmd([[wincmd h | while winnr() > 1 | wincmd h | endwhile]])
       local Terminal = require("toggleterm.terminal").Terminal           
       local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
       lazygit:toggle()
