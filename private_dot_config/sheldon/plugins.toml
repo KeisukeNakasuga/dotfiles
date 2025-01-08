@@ -36,3 +36,6 @@ github = "agkozak/zsh-z"
 
 [plugins.autopair]
 github = "hlissner/zsh-autopair"
+
+[plugins.oh-my-zsh]
+github = "ohmyzsh/ohmyzsh"
