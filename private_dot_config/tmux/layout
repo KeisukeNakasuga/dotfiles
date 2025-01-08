@@ -1,5 +1,5 @@
 selectp -t 0
-splitw -h
+splitw -h -p 25
 selectp -t 1
 splitw -v
 selectp -t 2
