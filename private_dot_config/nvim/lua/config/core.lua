@@ -1,5 +1,7 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+local g = vim.g
+g.mapleader = " "
+g.maplocalleader = "\\"
+g.editorconfig = true
 
 local opt = vim.opt
 opt.number = true
