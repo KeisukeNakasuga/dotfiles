@@ -36,13 +36,14 @@ return {
         desc = 'Move to right window',
     },
     -- Terminal mode
-    {
-      'tt',
-      function()
-        vim.cmd('terminal')
-      end,
-      desc = 'Open terminal mode in new window',
-    },
+    -- 使用する機会がないのでコメントアウト
+    --  {
+    --   'tt',
+    --   function()
+    --     vim.cmd('terminal')
+    --   end,
+    --  desc = 'Open terminal mode in new window',
+    -- },
     {
       'tx',
       function()
@@ -178,6 +179,12 @@ return {
       '<leader><leader>d',
       '<cmd>lua require\'dapui\'.eval()<CR>',
       desc = 'Evaluate Expression (DAP)',
+    },
+    -- ToggleTerm
+    {
+      '<leader>tt',
+      '<cmd>:ToggleTerm<CR>',
+      desc = 'ToggleTerm(float shell)',
     },
   },
 }
