@@ -2,7 +2,7 @@
 
 {{ if eq .chezmoi.os "darwin" }}
 brew update && brew upgrade
-arch --arm64 brew install \
+brew install \
   ripgrep \
   luarocks \
   zsh \
@@ -11,9 +11,9 @@ arch --arm64 brew install \
   wget \
   curl \
   fzf \
-  jq
   jq \
   zsh-completions
+
 {{ else if eq .chezmoi.os "linux" }}
 sudo apt update && sudo apt -y upgrade
 sudo apt -y install \
@@ -49,7 +49,7 @@ cargo install alacritty
 
 # node
 {{ if eq .chezmoi.os "darwin" }}
-arch --arm64 brew install volta
+brew install volta
 {{ else if eq .chezmoi.os "linux" }}
 curl https://get.volta.sh | zsh
 {{ end }}
@@ -58,7 +58,7 @@ volta install npm
 
 # lazygit
 {{ if eq .chezmoi.os "darwin" }}
-arch --arm64 brew install lazygit
+brew install lazygit
 {{ else if eq .chezmoi.os "linux" }}
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
@@ -70,7 +70,7 @@ sudo install lazygit -D -t /usr/local/bin/
 {{ if eq .chezmoi.os "linux" }}
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 {{ else if eq .chezmoi.os "darwin" }}
-arch --arm64 brew install lazydocker
+brew install lazydocker
 {{ end }}
 
 # nvme
