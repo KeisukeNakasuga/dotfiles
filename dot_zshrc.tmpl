@@ -22,6 +22,12 @@ alias dcu='docker compose up'
 autoload -Uz compinit
 compinit
 
+
+{{ if eq .chezmoi.os "darwin" }}
+# homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ end }}
+
 # oh-my-zsh
 export ZSH="$HOME/.local/share/sheldon/repos/github.com/ohmyzsh/ohmyzsh"
 

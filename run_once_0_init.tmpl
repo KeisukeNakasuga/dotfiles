@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ "$(uname)" = "Linux" ]; then
+  curl -fL 'https://raw.githubusercontent.com/github/gitignore/master/Global/Linux.gitignore' >> ~/.gitignore
+  sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin
+fi
+
 if [ "$(uname)" = "Darwin" ]; then
   curl -fL 'https://raw.githubusercontent.com/github/gitignore/master/Global/macOS.gitignore' >> ~/.gitignore
 
@@ -8,10 +13,4 @@ if [ "$(uname)" = "Darwin" ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   brew doctor
   brew install chezmoi
-fi
-
-if [ "$(uname)" = "Linux" ]; then
-  curl -fL 'https://raw.githubusercontent.com/github/gitignore/master/Global/Linux.gitignore' >> ~/.gitignore
-  
-  sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin
 fi
