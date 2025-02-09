@@ -41,7 +41,8 @@ return {
           cwd = '${workspaceFolder}',
           stopAtEntry = false,
           args = function()
-            return vim.fn.split(vim.fn.input('Program arguments: '), ' ')
+            local input = vim.fn.input('Program arguments: ')
+            return { input }
           end,
         },
       }
