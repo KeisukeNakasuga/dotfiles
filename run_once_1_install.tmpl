@@ -12,6 +12,8 @@ arch --arm64 brew install \
   curl \
   fzf \
   jq
+  jq \
+  zsh-completions
 {{ else if eq .chezmoi.os "linux" }}
 sudo apt update && sudo apt -y upgrade
 sudo apt -y install \

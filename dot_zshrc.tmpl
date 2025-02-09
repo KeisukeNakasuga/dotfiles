@@ -19,9 +19,18 @@ alias e='exit'
 alias dcb='docker compose build'
 alias dcu='docker compose up'
 
+# zsh-completions
+{{ if eq .chezmoi.os "linux" }}
 autoload -Uz compinit
 compinit
+{{ else if eq .chezmoi.os "darwin" }}
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
+  autoload -Uz compinit
+  compinit
+fi
+{{ end }}
 
 {{ if eq .chezmoi.os "darwin" }}
 # homebrew
