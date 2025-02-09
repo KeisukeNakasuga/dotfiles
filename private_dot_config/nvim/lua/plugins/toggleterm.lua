@@ -17,10 +17,18 @@ return {
       shell = vim.o.shell,  
     })
 
+    local Terminal = require("toggleterm.terminal").Terminal
+    local lazygit = Terminal:new({
+      cmd = "lazygit",
+      hidden = true,
+      direction = "float",
+      on_open = function(term)
+        -- ESC で lazygit を閉じる
+        vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<Esc>", "<C-\\><C-n>iqq", { noremap = true, silent = true })
+      end,
+    })
+
     function _lazygit_toggle()
-      vim.cmd([[wincmd h | while winnr() > 1 | wincmd h | endwhile]])
-      local Terminal = require("toggleterm.terminal").Terminal           
-      local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
       lazygit:toggle()
     end
 
@@ -29,7 +37,9 @@ return {
     vim.api.nvim_create_autocmd("TermOpen", {
       pattern = "*",
       callback = function()
-        vim.api.nvim_buf_set_keymap(0, "t", "<Esc>", "<C-\\><C-n>:ToggleTerm<CR>", { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(0, "t", "<Esc>", "<C-\\><C-n>i<Cmd>ToggleTerm<CR>", { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", "<Cmd>ToggleTerm<CR>", { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(0, "i", "<Esc>", "<Cmd>ToggleTerm<CR>", { noremap = true, silent = true })
       end,
     })
   end
