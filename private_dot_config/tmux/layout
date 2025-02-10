@@ -1,8 +1,0 @@
-selectp -t 0
-splitw -h -p 25
-selectp -t 1
-splitw -v
-selectp -t 2
-splitw -v
-selectp -t 1
-selectp -t 0
