@@ -20,15 +20,19 @@ family = "Hack Nerd Font"
 #opacity = 0.90
 padding = { x = 10, y = 10 }
 dynamic_padding = true
+{{ if eq .chezmoi.os "darwin" }}
+option_as_alt = "OnlyLeft"
+{{ end }}
 
 [scrolling]
 history = 100000
 
 [terminal]
 {{ if eq .chezmoi.os "darwin" }}
-shell = { program = "/opt/homebrew/bin/zsh", args = ["-c", "/opt/homebrew/bin/tmux new-session \\; source-file {{ .chezmoi.homeDir }}/.config/tmux/layout",] }
+# tmuxを使わない運用を試している
+# shell = { program = "/opt/homebrew/bin/zsh", args = ["-c", "/opt/homebrew/bin/tmux new-session \\; source-file {{ .chezmoi.homeDir }}/.config/tmux/layout",] }
 {{ else if eq .chezmoi.os "linux" }}
-shell = { program = "/usr/bin/zsh", args = ["-c", "tmux new-session \\; source-file {{ .chezmoi.homeDir }}/.config/tmux/layout",] }
+# shell = { program = "/usr/bin/zsh", args = ["-c", "tmux new-session \\; source-file {{ .chezmoi.homeDir }}/.config/tmux/layout",] }
 {{ end }}
 [colors.primary]
 background = '0x161821'
