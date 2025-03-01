@@ -56,16 +56,35 @@ return {
       'onsails/lspkind.nvim',
     },
     config = function()
+      local luasnip = require("luasnip")
       local cmp = require('cmp')
+
       cmp.setup({
         completion = {
           autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
         },
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end
+        },
         mapping = cmp.mapping.preset.insert({
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<Tab>'] = cmp.mapping(function(fallback)
+           if cmp.visible() then
+             cmp.select_next_item()
+           elseif luasnip.expand_or_jumpable() then
+             luasnip.jump(1)
+           else
+             fallback()
+           end
+         end, { "i", "s" }),  -- i:insert mode, s: snippet mode
         }),
         sources = {
           { name = 'nvim_lsp' },
+          { name = 'vsnip' },
+          { name = 'luasnip' },
+          { name = 'buffer' },
         },
       })
     end
