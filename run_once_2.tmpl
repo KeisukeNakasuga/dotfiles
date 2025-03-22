@@ -1,0 +1,46 @@
+#!/bin/sh
+
+OS_ID=$(grep -E "^ID" /etc/os-release | cut -d "=" -f2)
+
+if [ "$OS_ID" = "arch" ]; then
+  sudo pacman -S --needed --noconfirm \
+    zsh \
+    sheldon \
+    alacritty \
+    neovim \
+    ripgrep \
+    lua51 \
+    luarocks \
+    readline \
+    cmake \
+    base-devel \
+    fzf \
+    jq \
+    wget \
+    curl \
+    pkgconf \
+    git-delta \
+    lazygit \
+    obsidian \
+    gnome-tweaks
+
+  yay -S --needed --noconfirm \
+    gnome-shell-extension-dash-to-dock
+
+  yay -S --needed --noconfirm volta
+  volta install node
+  volta install npm
+fi
+
+if [ "$(uname)" = "Darwin" ]; then
+  brew install \
+    ripgrep \
+    luarocks \
+    zsh \
+    tmux \
+    nvim \
+    wget \
+    curl \
+    fzf \
+    jq
+fi

@@ -1,0 +1,2 @@
+setxkbmap jp
+setxkbmap -option ctrl:swapcaps

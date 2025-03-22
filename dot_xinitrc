@@ -1,0 +1,6 @@
+exec i3
+
+xrandr --newmode "5120x2880_60.00" 1183.50 5120 5568 6120 7120  2880 2883 2893 2941 -hsync +vsync
+xrandr --addmode DP-4 "5120x2880_60.00"
+xrandr --output DP-4 --mode "5120x2880_60.00"
+

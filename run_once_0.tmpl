@@ -1,0 +1,27 @@
+#!/bin/sh
+
+OS_ID=$(grep -E '^ID' /etc/os-release | cut -d '=' -f2)
+
+if [ "$OS_ID" = "arch" ]; then
+  sudo pacman -Syu --noconfirm
+
+  if ! command -v yay >/dev/null 2>&1; then
+    sudo pacman -S --noconfirm base-devel git
+    mkdir /opt/tmp & cd /opt/tmp
+    git clone https://aur.archlinux.org/yay-bin.git
+    cd yay-bin
+    makepkg -si
+    cd .. & rm -rf yay-bin
+  fi
+
+  sudo pacman -S chezmoi
+fi
+
+if [ "$(uname)" = "Darwin" ]; then
+  xcode-select --install
+  
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  brew update && brew upgrade && brew doctor
+
+  brew install chezmoi
+fi
