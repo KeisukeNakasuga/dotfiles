@@ -47,6 +47,24 @@ return {
         },
       }
 
+      -- GTest
+      dap.configurations.cpp = {
+        {
+          name = 'GTest bynary',
+          type = 'gdb',
+          request = 'launch',
+          program = function()
+            local default = vim.fn.getcwd() .. '/build/test_main'
+            return vim.fn.input('Path to executable: ', default, 'file')
+          end,
+          cwd = '${workspaceFolder}',
+          stopAtEntry = true,
+          args = function ()
+            -- return { '--gtest_filter=parser.parse_for' }
+          end
+        },
+      }
+
       -- python
       local function get_uv_python()
         local cwd = vim.fn.getcwd()
