@@ -19,6 +19,17 @@ if [ "$OS_ID" = "arch" ]; then
       lightdm-gtk-greeter
   fi
 
+  if ! command -v docker >/dev/null 2>&1; then
+    sudo pacman -S --needed --noconfirm docker
+
+    sudo systemctl enable --now docker.service
+    sudo systemctl enable --now containerd.service
+
+    sudo groupadd -f docker
+    sudo usermod -aG docker $USER
+    newgrp docker
+  fi
+
   if ! command -v gdm >/dev/null 2>&1; then
     sudo pacman -S --noconfirm gnome gnome-extra gdm
     sudo systemctl enable gdm
