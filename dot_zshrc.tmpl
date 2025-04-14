@@ -36,6 +36,8 @@ if type brew &>/dev/null; then
   compinit
 fi
 {{ end }}
+# gh completion
+eval "$(gh completion -s zsh)"
 
 {{ if eq .chezmoi.os "darwin" }}
 # homebrew
