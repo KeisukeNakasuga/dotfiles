@@ -97,5 +97,33 @@ return {
       { 'gi', vim.lsp.buf.implementation, desc = 'Go to implementation', mode = 'n' },
       { 'gr', vim.lsp.buf.references, desc = 'List references', mode = 'n' },
     }
+  },
+  {
+    'nvimdev/lspsaga.nvim',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('lspsaga').setup({
+        finder = {
+          keys = {
+            quit = { 'q', '<ESC>' },
+          }
+        }
+      })
+    end,
+    keys = {
+      { 'K', '<cmd>Lspsaga hover_doc<CR>', desc = 'Hover documentation', mode = 'n' },
+      { 'gr', '<cmd>Lspsaga finder<CR>', desc = 'Lspsaga finder (def+ref)', mode = 'n' },
+      { 'gp', '<cmd>Lspsaga peek_definition<CR>', desc = 'Peek definition', mode = 'n' },
+      { 'ga', '<cmd>Lspsaga code_action<CR>', desc = 'Code action', mode = 'n' },
+      { 'gn', '<cmd>Lspsaga rename<CR>', desc = 'rename', mode = 'n' },
+      { 'ge', '<cmd>Lspsaga show_line_diagnostics<CR>', desc = 'show_line_diagnostics', mode = 'n' },
+      { 'gd', '<cmd>Lspsaga goto_definition<CR>', desc = 'Go to definition', mode = 'n' },
+      { '[e', '<cmd>Lspsaga diagnostic_jump_next<CR>', desc = 'jump next', mode = 'n' },
+      { ']e', '<cmd>Lspsaga diagnostic_jump_prev<CR>', desc = 'jump prev', mode = 'n' },
+      { '<leader>lo', '<cmd>Lspsaga outline<CR>', desc = 'Show Outline', mode = 'n' },
+    }
   }
 }
