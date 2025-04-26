@@ -1,11 +1,11 @@
 return {
-  {
+  {  -- LSP manager
     'williamboman/mason.nvim',
     config = function ()
       require('mason').setup()
     end,
   },
-  {
+  {  -- LSP auto install settings
     'williamboman/mason-lspconfig.nvim',
     dependencies = {
       'williamboman/mason.nvim',
@@ -27,18 +27,6 @@ return {
         },
         automatic_installation = true,
       })
-      mason_lspconfig.setup_handlers({ function (server_name)
-        local opt = {
-          capabilities = require('cmp_nvim_lsp').default_capabilities(
-            vim.lsp.protocol.make_client_capabilities()
-          ),
-          on_attach = function (client, bufnr)
-            -- キーバインド設定は neovim/nvim-lspconfig の方に記載
-            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap=true, silent=true })
-          end
-        }
-        require('lspconfig')[server_name].setup(opt)
-      end })
     end
   },
   {
