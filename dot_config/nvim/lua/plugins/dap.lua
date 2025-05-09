@@ -1,5 +1,15 @@
 return {
   {
+    'jay-babu/mason-nvim-dap.nvim',
+    dependencies = { 'mason.nvim', 'nvim-dap' },
+    config = function()
+      require("mason-nvim-dap").setup({
+        ensure_installed = { "js-debug-adapter", "python" },
+        automatic_installation = true,
+      })
+    end,
+  },
+  {
     'mfussenegger/nvim-dap',
     lazy = true,
     dependencies = {
@@ -10,13 +20,6 @@ return {
       {
         'microsoft/vscode-js-debug',
         build = 'npm install --legacy-peer-deps && npm run compile',
-      },
-      {
-        'williamboman/mason.nvim',
-        opts = function(_, opts)
-          opts.ensure_installed = opts.ensure_installed or {}
-          table.insert(opts.ensure_installed, 'js-debug-adapter')
-        end,
       },
     },
     config = function()
@@ -81,19 +84,6 @@ return {
       dap_python.setup(get_uv_python())
 
       -- js, ts
-      dap.adapters['pwa-node'] = {
-        type = 'server',
-        host = 'localhost',
-        port = '${port}',
-        executable = {
-          command = 'node',
-          args = {
-            require('mason-registry').get_package('js-debug-adapter'):get_install_path()
-            .. '/js-debug/src/dapDebugServer.js',
-            '${port}',
-          },
-        },
-      }
       local js_ts_configurations = {
         {
           name = 'Launch file',
