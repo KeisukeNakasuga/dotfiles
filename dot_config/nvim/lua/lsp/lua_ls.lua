@@ -6,5 +6,14 @@ return {
   ),
   on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
-  end
+  end,
+  settings = {
+    Lua = {
+      hint = {
+        enable = true,
+        setType = true,
+        paramType = true,
+      }
+    }
+  }
 }

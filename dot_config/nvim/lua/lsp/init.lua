@@ -37,3 +37,19 @@ vim.lsp.enable('yamlls')
 local svelte_opts = require('lsp.svelte')
 vim.lsp.config('svelte', svelte_opts)
 vim.lsp.enable('svelte')
+
+
+-- inlay hint
+vim.keymap.set("n", "<leader>uh", function()
+  local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
+  vim.lsp.inlay_hint.enable(not enabled, { bufnr = 0 })
+end, { desc = "Toggle Inlay Hints" })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+    end
+  end,
+})
