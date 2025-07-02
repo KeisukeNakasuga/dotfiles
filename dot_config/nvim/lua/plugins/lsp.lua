@@ -94,6 +94,16 @@ return {
     },
     config = function()
       require('lspsaga').setup({
+        ui = {
+          title = true,
+          border = 'rounded'
+        },
+        hover = {
+          max_width = 120,
+        },
+        diagnostic = {
+          max_width = 120,
+        },
         finder = {
           keys = {
             quit = { 'q', '<ESC>' },
