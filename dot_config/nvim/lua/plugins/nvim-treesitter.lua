@@ -5,6 +5,9 @@ return {
   config = function()
     require('nvim-treesitter.configs').setup({
       ensure_installed = {
+        'c',
+        'cpp',
+        'python',
         'lua',
         'javascript',
         'typescript',
@@ -18,6 +21,9 @@ return {
       },
       indent = {
         enable = true,
+      },
+      matchup = {
+        enable = true
       },
       rainwob = {
         enable = true,
