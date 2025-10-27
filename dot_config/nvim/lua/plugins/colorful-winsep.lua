@@ -3,5 +3,8 @@ return {
   config = true,
   event = {
     'WinLeave',
+  },
+  opts = {
+    exclude_filetypes = { 'NvimTree' },
   }
 }
