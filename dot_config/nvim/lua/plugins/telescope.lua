@@ -1,8 +1,20 @@
 return {
   'nvim-telescope/telescope.nvim',
-  dependencise = {
-    'nvim-lua/plenary.nvim'
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'ahmedkhalf/project.nvim'
   },
+  config = function(_, opts)
+    local telescope = require('telescope')
+    telescope.setup(opts)
+
+    telescope.load_extension('projects')
+
+    require('project_nvim').setup({
+      detection_methods = { "lsp", "pattern" },
+      patterns = { ".git", "package.json" }
+    })
+  end,
   opts = {
     defaults = {
       vimgrep_arguments = {
@@ -34,5 +46,9 @@ return {
     },
     { '<leader>fb', function() require('telescope.builtin').buffers() end, desc = 'Telescope buffers' },
     { '<leader>fh', function() require('telescope.builtin').help_tags() end, desc = 'Telescope help tags' },
+    { '<leader>fm', function() require('telescope.builtin').man_pages() end, desc = 'Telescope man pages' },
+    { '<leader>fp', function() require('telescope').extensions.projects.projects{} end, desc = 'Search project' }
   },
 }
+
+
