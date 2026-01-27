@@ -45,6 +45,11 @@ if [ "$OS_ID" = "arch" ]; then
       kguiaddons
   fi
 
+  if ! command -v direnv >/dev/null 2>&1; then
+    sudo pacman -S --needed --noconfirm \
+      direnv
+  fi
+
   if ! command -v setxkbmap >/dev/null 2>&1; then
     sudo pacman -S xorg-setxkbmap
     setxkbmap -layout jp
