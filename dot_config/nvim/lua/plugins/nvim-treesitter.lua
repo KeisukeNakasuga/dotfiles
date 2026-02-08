@@ -13,8 +13,12 @@ return {
         'typescript',
         'html',
         'css',
+        'svelte',
+        'vim',
+        'vimdoc'
       },
       sync_install = false,
+      auto_install = true,
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
@@ -25,7 +29,7 @@ return {
       matchup = {
         enable = true
       },
-      rainwob = {
+      rainbow = {
         enable = true,
         extended_mode = false,
         max_file_line = 3000,
