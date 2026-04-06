@@ -13,26 +13,26 @@ return {
     -- Move window pane
     {
         '<M-Left>',
-        '<C-w>h',
-        mode = 'n',
+        '<cmd>wincmd h<cr>',
+        mode = { 'n', 't' },
         desc = 'Move to left window',
     },
     {
         '<M-Down>',
-        '<C-w>j',
-        mode = 'n',
+        '<cmd>wincmd j<cr>',
+        mode = { 'n', 't' },
         desc = 'Move to below window',
     },
     {
         '<M-Up>',
-        '<C-w>k',
-        mode = 'n',
+        '<cmd>wincmd k<cr>',
+        mode = { 'n', 't' },
         desc = 'Move to above window',
     },
     {
         '<M-Right>',
-        '<C-w>l',
-        mode = 'n',
+        '<cmd>wincmd l<cr>',
+        mode = { 'n', 't' },
         desc = 'Move to right window',
     },
     -- Terminal mode
