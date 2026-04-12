@@ -44,6 +44,17 @@ return {
         })
       end, desc = 'Telescope live grep'
     },
+    { '<leader>fs', -- カレントバッファを検索する
+      function ()
+        require('telescope.builtin').current_buffer_fuzzy_find(
+          require('telescope.themes').get_dropdown {
+            winblend = 10,
+            previewer = false,
+          }
+        )
+      end,
+      desc = 'Search in current buffer'
+    },
     { '<leader>fb', function() require('telescope.builtin').buffers() end, desc = 'Telescope buffers' },
     { '<leader>fh', function() require('telescope.builtin').help_tags() end, desc = 'Telescope help tags' },
     { '<leader>fm', function() require('telescope.builtin').man_pages() end, desc = 'Telescope man pages' },
