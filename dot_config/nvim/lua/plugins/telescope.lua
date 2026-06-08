@@ -50,6 +50,10 @@ return {
           require('telescope.themes').get_dropdown {
             winblend = 10,
             previewer = false,
+            layout_config = {
+              width = 0.8,
+              height = 0.4,
+            },
           }
         )
       end,
