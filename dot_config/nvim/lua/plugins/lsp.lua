@@ -24,6 +24,7 @@ return {
           'yamlls',
           'docker_compose_language_service',
           'dockerls',
+          'clojure_lsp',
         },
         automatic_installation = true,
       })

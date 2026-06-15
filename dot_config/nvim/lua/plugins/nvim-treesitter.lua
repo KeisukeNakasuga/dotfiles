@@ -15,7 +15,8 @@ return {
         'css',
         'svelte',
         'vim',
-        'vimdoc'
+        'vimdoc',
+        'clojure',
       },
       sync_install = false,
       auto_install = true,
