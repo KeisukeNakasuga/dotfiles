@@ -1,28 +1,38 @@
 #!/usr/bin/env zsh
-session="dev"
+session="devenv"
 
-# すでに dev セッションがあれば、それに入るだけ
+# devenv kill|stop|down
+case "$1" in
+  kill | stop | down | k)
+    if tmux has-session -t "$session" 2>/dev/null; then
+      tmux kill-session -t "$session"
+      echo "tmux session '$session' closed."
+    else
+      echo "tmux session '$session' not found."
+    fi
+    exit 0
+    ;;
+esac
+
+# すでに devenv セッションがあれば、それに入るだけ
 if tmux has-session -t "$session" 2>/dev/null; then
   if [ -n "$TMUX" ]; then tmux switch-client -t "$session"; else tmux attach -t "$session"; fi
   exit 0
 fi
 
-# --- ウィンドウ1: 開発用レイアウト (メイン nvim + サイド2つ) ---
-tmux new-session -d -s "$session" -n editor
+# ウィンドウ1: 開発用レイアウト (メイン nvim + サイド2つ)
+tmux new-session -d -s "$session" -n editor nvim
 tmux split-window -h -l 30% -t "$session:1"
-tmux split-window -v         -t "$session:1"
-tmux select-pane -L          -t "$session:1"
-tmux send-keys   -t "$session:1" 'nvim' Enter
+tmux split-window -v -t "$session:1"
+tmux select-pane -L -t "$session:1"
+tmux send-keys -t "$session:1.0"
 
-# --- ウィンドウ2: Claude用 4分割グリッド ---
+# ウィンドウ2: その他作業用 4分割グリッド
 tmux new-window  -t "$session" -n claude
 tmux split-window -t "$session:2"
 tmux split-window -t "$session:2"
 tmux split-window -t "$session:2"
 tmux select-layout -t "$session:2" tiled
-# 左上ペインで claude を起動したい場合は次の2行を有効化
-# tmux select-pane -t "$session:2.0"
-# tmux send-keys   -t "$session:2.0" 'claude' Enter
 
 # ウィンドウ1に戻してアタッチ
 tmux select-window -t "$session:1"
