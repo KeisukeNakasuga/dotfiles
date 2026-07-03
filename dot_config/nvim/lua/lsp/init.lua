@@ -34,7 +34,6 @@ local svelte_opts = require('lsp.svelte')
 vim.lsp.config('svelte', svelte_opts)
 vim.lsp.enable('svelte')
 
-
 -- inlay hint
 vim.keymap.set("n", "<leader>uh", function()
   local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
