@@ -1,7 +1,0 @@
-# Created by newuser for 5.9
-autoload -U compinit && compinit          # タブ補完を有効化
-autoload -U promptinit && promptinit && prompt gentoo   # Gentoo 標準プロンプト
-alias cfg='git --git-dir=$HOME/Documents/projects/gentoo-config/.git --work-tree=/'
-export LC_CTYPE=en_US.UTF-8   # ssh 経由で Mac から届く LC_CTYPE=UTF-8(無効値)を上書き
-alias syslg='lazygit --git-dir=$HOME/Documents/projects/gentoo-config/.git --work-tree=/'
-eval "$(starship init zsh)"

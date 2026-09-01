@@ -1,0 +1,40 @@
+# --- 環境変数 ---
+export EDITOR=nvim
+export HISTSIZE=10000
+export SAVEHIST=10000
+
+# --- 履歴・操作の快適化 ---
+setopt print_eight_bit        # 日本語ファイル名を正しく表示
+setopt auto_pushd             # cd で自動的にディレクトリスタックに積む
+setopt share_history          # 複数のターミナル間で履歴を共有
+setopt hist_reduce_blanks     # 履歴の余分な空白を詰める
+setopt hist_ignore_all_dups   # 重複コマンドは古い方を履歴から消す
+
+# --- 補完 ---
+{{ if eq .chezmoi.os "darwin" -}}
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
+{{ end -}}
+autoload -U compinit && compinit
+
+# --- エイリアス ---
+alias ls='ls --color'
+alias sl='ls --color'
+alias lg='lazygit'
+alias tks='tmux kill-server'
+alias e='exit'
+alias dcb='docker compose build'
+alias dcu='docker compose up'
+
+{{ if eq .chezmoi.os "linux" -}}
+export LC_CTYPE=en_US.UTF-8   # ssh 経由で Mac から届く LC_CTYPE=UTF-8(無効値)を上書き
+alias cfg='git --git-dir=$HOME/Documents/projects/gentoo-config/.git --work-tree=/'
+alias syslg='lazygit --git-dir=$HOME/Documents/projects/gentoo-config/.git --work-tree=/'
+{{ else if eq .chezmoi.os "darwin" -}}
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ end -}}
+
+# --- ツールの初期化 ---
+eval "$(chezmoi completion zsh)"
+eval "$(starship init zsh)"
